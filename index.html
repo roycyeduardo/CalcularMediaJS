@@ -1,81 +1,113 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Calculo de média</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>CalcularMediaJS</title>
+    <link rel="shortcut icon" href="./src/img/Icon.ico" type="image/x-icon">
 
-        <!-- CSS BOOTSTRAP -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <!-- JS BOOTSTRAP -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="./src/js/media.js"></script>
 
+    <style>
+        body {
+            text-align: center;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-        <link rel="shortcut icon" href="./src/img/Icon.ico" type="image/x-icon">
-        <script type="text/javascript" src="./src/js/media.js"></script>
-    </head>
-    <body>
-        <style>
-            body {
-                text-align: center;
-                background-color: #303030;
-                color: white;
-            }
-            input {
-                border-radius: 10%;
-                box-shadow: 5px 4px #000000;
-            }
-            p {
-                font-size: 15pt;
-            }
-            button {
-                background-color: #ffffff;
-                border-radius: 12%;
-                padding: 1px 12px;
-                box-shadow: 5px 4px #000000;
-            }
-            button:hover {
-                background-color: #c0c0c0;
-                box-shadow: 5px 4px #000000;
-            }
-            button:active {
-                box-shadow: 3px 2px #000000;
-            }
-            a {
-                text-decoration: none;
-                color: #ffff;
-            }
-            a:hover {
-                color: #c0c0c0;
-            }
-            hr {
-                box-shadow: 5px 4px #000000;
-            }
-        </style>
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <hr>
-        <p><b>
-            <br>
-            Nota 1<br>
-            <input id="nota1" type="number"><br>
-            Nota 2<br>
-            <input id="nota2" type="number"><br>
-            Nota 3<br>
-            <input id="nota3" type="number"><br>
-            Nota 4<br>
-            <input id="nota4" type="number"><br>
-            <br>
-            <button onclick="media()"><b>Calcular</b></button>
-        </b></p>
-        <br>
-        <hr>
+        .input-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
 
-        <footer><b>Feito com ❤ por <a href="https://github.com/roycyeduardo">Roycy</a></b></footer>
-        
-    </body>
+        .input-group label {
+            margin-right: 10px;
+            color: #bbb;
+        }
+
+        input {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            border-radius: 4px;
+            width: 80px;
+            background-color: #333;
+            color: #eee;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #333;
+            margin: 20px 0;
+            width: 80%;
+        }
+
+        #descricao {
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>CalcularMediaJS</h1>
+        <p id="descricao">Insira as notas (0 a 10) para calcular a média.</p>
+
+        <div class="input-group">
+            <label for="nota1">Nota 1:</label>
+            <input id="nota1" type="number" min="0" max="10" oninput="validateInput(this)">
+        </div>
+        <div class="input-group">
+            <label for="nota2">Nota 2:</label>
+            <input id="nota2" type="number" min="0" max="10" oninput="validateInput(this)">
+        </div>
+        <div class="input-group">
+            <label for="nota3">Nota 3:</label>
+            <input id="nota3" type="number" min="0" max="10" oninput="validateInput(this)">
+        </div>
+        <div class="input-group">
+            <label for="nota4">Nota 4:</label>
+            <input id="nota4" type="number" min="0" max="10" oninput="validateInput(this)">
+        </div>
+
+        <button onclick="calcularMedia()">Calcular Média</button>
+    </main>
+
+    <script>
+        function validateInput(input) {
+            if (input.value > 10) {
+                input.value = 10;
+            } else if (input.value < 0) {
+                input.value = 0;
+            }
+        }
+    </script>
+</body>
 </html>
